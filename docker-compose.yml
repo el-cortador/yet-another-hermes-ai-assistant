@@ -1,0 +1,8 @@
+services:
+  hermes-assistant:
+    build: .
+    env_file:
+      - .env
+    volumes:
+      - "${HOST_OBSIDIAN_VAULT_PATH:-C:/Users/elcortador/Documents/obsidian-vault}:/vault"
+    restart: unless-stopped

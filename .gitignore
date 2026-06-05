@@ -216,3 +216,12 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Other
+.claude
+CLAUDE.md
+docs/specs/
+
+# Hermes runtime files
+hermes/state/
+HERMES_DISCORD.md
