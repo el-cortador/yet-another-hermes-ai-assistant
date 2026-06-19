@@ -3,6 +3,8 @@ from __future__ import annotations
 import logging
 import time
 
+from discord.errors import LoginFailure
+
 from app.config import Config
 from app.discord_bot import KnowledgeBot
 from app.hermes_agent import HermesAgent
@@ -26,6 +28,12 @@ def main() -> None:
             bot.run(config.discord_bot_token)
         except KeyboardInterrupt:
             raise
+        except LoginFailure:
+            logging.error(
+                "Discord login failed with 401 Unauthorized. "
+                "Check DISCORD_BOT_TOKEN and recreate the container so it picks up the new value."
+            )
+            raise SystemExit(1)
         except Exception:
             logging.exception("Discord client stopped unexpectedly; retrying in 15 seconds")
             time.sleep(15)
